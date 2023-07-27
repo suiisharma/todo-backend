@@ -1,5 +1,5 @@
 import express from "express"
-import { GetProfile, Logout, login, register } from "../controller/userCont.js";
+import { GetProfile, Logout, login, register } from "../controller/UserCont.js";
 import IsAuthenticated from "../middleware/IsAuthenticated.js";
 
 
