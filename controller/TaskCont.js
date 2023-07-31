@@ -3,11 +3,16 @@ import Task from "../models/TaskScema.js";
 
 export const createTask = async (req, res) => {
   try {
-    const { title, description } = req.body;
-    if (!(title && description)) {
+    const { title, description,deadline} = req.body;
+    if (!(title && description )) {
       return Response(res, 400, false, "Required fields can't be empty!");
     }
-    await Task.create({ title, description, userId: req.user._id });
+    if(deadline){
+      await Task.create({ title, description, userId: req.user._id,Deadline:deadline });
+    }
+    else{
+      await Task.create({ title, description, userId: req.user._id });
+    }
     Response(res, 201, true, "Task created successfully!");
   } catch (error) {
     Response(res, 400, false, "Task Creation Failed!");
@@ -62,8 +67,8 @@ export const DeleteTask = async (req, res) => {
 
 export const EditTask = async (req, res) => {
   try {
-    const { title, description } = req.body;
-    if(!(title&&description)){
+    const { title, description ,Deadline} = req.body;
+    if(!(title&&description && Deadline)){
       return Response(res, 400, false, "Required fields can't be empty!");
     }
     if(!(req.params.id)){
@@ -75,8 +80,9 @@ export const EditTask = async (req, res) => {
     }
     task.title = title;
     task.description = description;
+    task.Deadline=Deadline;
     await task.save();
-    Response(res, 200, true, "Task Updated Successfully!");
+    Response(res, 200, true, "Task Edited Successfully!");
   } catch (error) {
     Response(res, 404, false, "Some Error Occured!");
     console.log(error.message);
