@@ -3,12 +3,12 @@ import Task from "../models/TaskScema.js";
 
 export const createTask = async (req, res) => {
   try {
-    const { title, description,deadline} = req.body;
+    const { title, description,Deadline} = req.body;
     if (!(title && description )) {
       return Response(res, 400, false, "Required fields can't be empty!");
     }
     if(deadline){
-      await Task.create({ title, description, userId: req.user._id,Deadline:deadline });
+      await Task.create({ title, description, userId: req.user._id,Deadline });
     }
     else{
       await Task.create({ title, description, userId: req.user._id });
