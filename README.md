@@ -17,7 +17,7 @@ The `/Hello` endpoint is a simple API that responds with an HTML page containing
     ```html
     <div>
       <h1>Hi There.</h1><br/>
-      <h2>Thanks for calling on http://todo-backend-s7y5.onrender.com/Hello</h2>
+      <h2>Thanks for calling on Backend_Url/Hello</h2>
     </div>
     ```
 
@@ -165,13 +165,25 @@ The Task API provides endpoints to manage tasks, including creating new tasks, r
     }
     ```
 
-- **PUT /api/v1/tasks/:taskId**
-  - Description: Update the details of a specific task by its ID.
+- **POST /api/v1/task/:taskID**
+  - Description: Edit a specific task by its ID.
   - Request Body: 
     ```json
     {
+      "title": "newTaskName",
+      "description": "newTaskBody"
     }
     ```
+  - Response:
+    ```json
+    {
+      "success": true,
+      "message": "Task Edited Successfully!"
+    }
+    ```
+
+- **PUT /api/v1/tasks/:taskId**
+  - Description: Update the details of a specific task by its ID.
   - Response:
     ```json
     {
