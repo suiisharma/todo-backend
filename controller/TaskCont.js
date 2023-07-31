@@ -7,7 +7,7 @@ export const createTask = async (req, res) => {
     if (!(title && description )) {
       return Response(res, 400, false, "Required fields can't be empty!");
     }
-    if(deadline){
+    if(Deadline){
       await Task.create({ title, description, userId: req.user._id,Deadline });
     }
     else{
