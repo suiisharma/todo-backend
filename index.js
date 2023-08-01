@@ -30,7 +30,7 @@ app.use(
   })
 );
 
-app.use(express.static('/Uploads'))
+app.use(express.static('Uploads'))
 
 app.get('/Hello',(req,res)=>{
 res.set('Content-Type', 'text/html');
