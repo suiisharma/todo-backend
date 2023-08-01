@@ -32,7 +32,7 @@ app.use(
 
 
 
-app.use('/Uploads', express.static('/Uploads'));
+app.use('/Uploads', express.static('./Uploads'));
 
 
 
