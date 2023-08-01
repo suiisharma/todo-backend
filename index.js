@@ -7,7 +7,6 @@ import cors from "cors";
 import taskRouter from "./Routes/task.js";
 import ProfileRouter from "./Routes/profile.js";
 import bodyParser from "body-parser";
-import path from 'path'
 
 config({
   path: "./Data/config.env",
@@ -29,13 +28,6 @@ app.use(
     credentials: true,
   })
 );
-
-
-
-app.use('/Uploads', express.static('./Uploads'));
-
-
-
 
 
 app.get('/Hello',(req,res)=>{
