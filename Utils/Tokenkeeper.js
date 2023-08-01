@@ -15,6 +15,7 @@ const sendToken = async (user, res, statuscode, success, message) => {
       .json({
         success,
         message,
+        user
       });
   } catch (error) {
     console.log(error.message);
