@@ -30,7 +30,7 @@ export const UploadProfile=async(req,res)=>{
       return Response(res,400,false,"Some Error Occured!")
     }
      const Path=req.file.path
-     const name=req.file.originalname
+     const name=req.file.filename
      if(!(Path&&name)){
       return   Response(res,400,false,"Required Fields Can't Be Empty!")
      }
