@@ -42,7 +42,7 @@ export const UploadProfile=async(req,res)=>{
       
      ProfilePic=await Profile.create({Path,name:name,userId:req.user._id});
 
-     Response(res,200,true,req.file)
+     Response(res,200,true,ProfilePic.name)
    } catch (error) {
       Response(res,400,false,"Some Error Occured!")
       console.log(error.message);
@@ -56,7 +56,7 @@ export const GetProfilePic=async (req,res)=>{
      if(!ProfilePic){
       return Response(res,200,true,{UseGooglePic:true})
      }
-   res.status(200).sendFile(ProfilePic.Path,{root:"."})
+   Response(res,200,true,{UseGooglePic:false,ProfilePic:ProfilePic.name})
   } catch (error) {
     console.log(error.message);
     Response(res,400,false,'Some Error Occured!')
