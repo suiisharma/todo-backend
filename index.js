@@ -29,6 +29,14 @@ app.use(
   })
 );
 
+
+
+app.use('/Uploads', express.static(path.join(__dirname + '/Uploads')));
+
+
+
+
+
 app.get('/Hello',(req,res)=>{
 res.set('Content-Type', 'text/html');
 res.send(Buffer.from(`<div><h1>Hi There.</h1><br/><h2>Thanks for calling on ${req.protocol+"://"+req.hostname+req.url}</h2></div>`))

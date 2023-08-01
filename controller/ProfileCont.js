@@ -14,7 +14,7 @@ const changeprofile=async(res,Path,name,ProfilePic)=>{
       ProfilePic.Path=Path
       ProfilePic.name=name
       await  ProfilePic.save()
-      Response(res,200,true,"Profile Updated Successfully!")
+      Response(res,200,true,{value:"Profile Updated Successfully!",name,path})
     } catch (error) {
       Response(res,400,false,"Some Error Occured!")
       console.log(error.message);
@@ -41,7 +41,7 @@ export const UploadProfile=async(req,res)=>{
       
      ProfilePic=await Profile.create({Path,name:name,userId:req.user._id});
 
-     Response(res,200,true,"Profile Updated Successfully!")
+     Response(res,200,true,{value:"Profile Updated Successfully!",name,Path})
    } catch (error) {
       Response(res,400,false,"Some Error Occured!")
       console.log(error.message);
