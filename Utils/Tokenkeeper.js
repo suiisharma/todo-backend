@@ -4,6 +4,8 @@ import Response from "./response.js";
 const sendToken = async (user, res, statuscode, success, message) => {
   try {
     const token = jwt.sign({ _id: user._id }, process.env.Jwt_secret);
+    const User=user;
+    User.password="";
     return res
       .status(statuscode)
       .cookie("Token", token, {
@@ -15,7 +17,7 @@ const sendToken = async (user, res, statuscode, success, message) => {
       .json({
         success,
         message,
-        user
+        User
       });
   } catch (error) {
     console.log(error.message);
