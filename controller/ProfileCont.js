@@ -29,7 +29,6 @@ export const UploadProfile=async(req,res)=>{
       console.log("Multer Upload Failed!");
       return Response(res,400,false,"Some Error Occured!")
     }
-     console.log(req.file);
      const Path=req.file.path
      const name=req.file.originalname
      if(!(Path&&name)){
