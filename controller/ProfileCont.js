@@ -41,7 +41,7 @@ export const UploadProfile=async(req,res)=>{
       
      ProfilePic=await Profile.create({Path,name:name,userId:req.user._id});
 
-     Response(res,200,true,name)
+     Response(res,200,true,Path)
    } catch (error) {
       Response(res,400,false,"Some Error Occured!")
       console.log(error.message);
