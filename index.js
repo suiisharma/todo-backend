@@ -23,7 +23,11 @@ app.use(cookieParser());
 
 
 app.use(
-  cors()
+  cors({
+    origin: [process.env.frontend_url],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
 );
 
 app.use(express.static('Uploads'))
