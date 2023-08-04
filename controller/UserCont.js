@@ -137,14 +137,23 @@ export const Register = async (req, res) => {
 
     const { name, email, password } = jwt.verify(req.params.Token,process.env.Email_secret_key)
 
-
+  
     if (!(name && email && password)) {
       return res.render('Error',{link:process.env.frontend_url})
     }
+ 
+
     let user = await User.findOne({ email });
     if (user) {
       return res.render('User',{link:process.env.frontend_url})
     }
+     
+    
+   if(!isPasswordStrong(password)){
+    return Response(res,400,false,"Weak Password!")
+   }
+
+
     const hashed_password = await bcrypt.hash(password, 10);
     user = await User.create({ name, email, password: hashed_password });
     return  res.render('Create',{link:process.env.frontend_url})
@@ -160,10 +169,6 @@ export const login = async (req, res) => {
       return Response(res, 400, false, "Required fields can't be empty!");
     }
     
-   if(!isPasswordStrong(password)){
-    return Response(res,400,false,"Weak Password!")
-   }
-
 
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
