@@ -5,6 +5,14 @@ import bcrypt from "bcrypt";
 import nodemailer from "nodemailer";
 import jwt from "jsonwebtoken";
 
+
+export const isPasswordStrong = (password) => {
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+  return strongPasswordRegex.test(password);
+};
+
+
+
 export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -151,6 +159,12 @@ export const login = async (req, res) => {
     if (!(email && password)) {
       return Response(res, 400, false, "Required fields can't be empty!");
     }
+    
+   if(!isPasswordStrong(password)){
+    return Response(res,400,false,"Weak Password!")
+   }
+
+
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
       return Response(res, 403, false, "Please SignUp!");
