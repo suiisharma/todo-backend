@@ -22,15 +22,16 @@ app.use(cookieParser());
 
 
 
-app.use(
-  cors({
-    origin: [process.env.frontend_url],
-    methods: ["GET", "POST", "DELETE", "PUT"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [process.env.frontend_url],
+//     methods: ["GET", "POST", "DELETE", "PUT"],
+//     credentials: true,
+//   })
+// );
 
 app.use(express.static('Uploads'))
+app.set('view engine','ejs');
 
 app.get('/Hello',(req,res)=>{
 res.set('Content-Type', 'text/html');
@@ -42,4 +43,5 @@ app.use("/api/v1/profile", ProfileRouter);
 
 app.listen(process.env.port, () => {
   console.log(`Example app listening on port ${process.env.port}`);
+  console.log(`Frontend at ${process.env.frontend_url}`);
 });

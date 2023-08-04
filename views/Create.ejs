@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Created Successfully</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .success-container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    .success-message {
+      font-size: 24px;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+    .navigate-button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .navigate-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="success-message">User Created Successfully!</div>
+    <button type="button" class="navigate-button" onclick="navigateToFrontend()">Go to Home</button>
+  </div>
+   <script>
+    function navigateToFrontend() {
+    window.location.href = "<%=link%>";
+  }
+   </script>
+</body>
+</html>
