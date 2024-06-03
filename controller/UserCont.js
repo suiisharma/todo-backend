@@ -114,10 +114,14 @@ export const register = async (req, res) => {
       html: htmlContent,
     };
 
-    transporter.sendMail(mailOptions).then(() => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return Response(res, 400, false, "Some Error Occured!");
+      }
+      if(info.rejected.length>0){
+        return Response(res, 400, false, "Invalid Email Address!");
+      }
       return Response(res, 200, true, "Please check your email for verification link!");
-    }).catch((err) => {
-      return Response(res, 400, false,err?.message||"Please enter a valid email address!"||"Some Error Occured!");
     });
   } catch (error) {
     Response(res, 400, false, "Some Error Occured!");
